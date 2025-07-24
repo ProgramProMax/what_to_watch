@@ -7,6 +7,13 @@ from .models import Opinion
 from .forms import OpinionForm
 
 
+def random_opinion():
+    quantity = Opinion.query.count()
+    if quantity:
+        offset_value = randrange(quantity)
+        return Opinion.query.offset(offset_value).first()
+
+
 @app.route('/')
 def index_view():
     quantity = Opinion.query.count()
